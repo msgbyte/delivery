@@ -1,0 +1,20 @@
+version: "3.3"
+
+# Reference: https://docs.docker.com/compose/compose-file/compose-file-v3/
+
+services:
+  jenkins:
+    container_name: msgbyte-delivery-jenkins
+    build:
+      context: .
+    image: msgbyte/delivery-jenkins
+    user: root
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins_home:/var/jenkins_home
+    ports:
+      - "11021:8080"
+      - "50000:50000"
+
+volumes:
+  jenkins_home:
